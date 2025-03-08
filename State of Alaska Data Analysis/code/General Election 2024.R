@@ -25,49 +25,11 @@ files_and_paths <- tibble(
                          full.names = TRUE)) |> 
   mutate(cvr = str_detect(filenames, pattern = 'Cvr'))
 
-
-
-
-
 cvr_test <- fromJSON(txt = 'data/General Election 2024/CVR_Export_20241130154411/CvrExport_100.json')
 
 ballot_type_contest_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/BallotTypeContestManifest.json') |> 
   as.data.frame()
 
-files_and_paths$filenames
-files_and_paths$filepaths
-
-f_json_to_df <- function(x) {
-  x$filename <- as.data.frame(fromJSON(txt = toString(x$filepaths)))
-}
-
-f_json_to_df_test <- function(x) {
-  
-  for (item in x) {
-    
-    x$filenames <- x$filepaths
-    
-  }
-  
-}
-
-
-
-files_and_paths |>
-  filter(!cvr) |> 
-  f_json_to_df_test()
-
-
-files_and_paths |> 
-  filter(!cvr) |> 
-  slice_head(n = 1) |> 
-  select(filepaths) |> 
-  toString() |> 
-  fromJSON()
-
-files_and_paths |> 
-  filter(!cvr) |> 
-  f_json_to_df()
 
 # REVIEW ######################################################################
 
