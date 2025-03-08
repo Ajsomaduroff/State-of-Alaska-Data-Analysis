@@ -28,6 +28,7 @@ files_and_paths <- tibble(
 
 
 
+
 cvr_test <- fromJSON(txt = 'data/General Election 2024/CVR_Export_20241130154411/CvrExport_100.json')
 
 ballot_type_contest_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/BallotTypeContestManifest.json') |> 
@@ -42,13 +43,15 @@ f_json_to_df <- function(x) {
 
 f_json_to_df_test <- function(x) {
   
-  for (filename in list) {
-    print(x$filename)
-    print(toString(x$filepaths))
-    }
+  for (item in x) {
+    
+    x$filenames <- x$filepaths
+    
+  }
+  
 }
 
-x
+
 
 files_and_paths |>
   filter(!cvr) |> 
