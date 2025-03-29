@@ -49,3 +49,5 @@ po/*~
 rsconnect/
 State of Alaska Data Analysis/.DS_Store
 .DS_Store
+State of Alaska Data Analysis/data/Lightning/Historical_Lightning_Points_2012_forward_geojson.zip
+State of Alaska Data Analysis/data/Lightning/Historical_Lightning_Points_2012_forward_geojson/TOALightningPoints_2012_2024_WGS84.geojson

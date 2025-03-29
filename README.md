@@ -19,3 +19,14 @@ The following is stated on the Source webpage
 The Cast Vote Record (CVR) contains the votes and rankings on all the election ballots that were scanned. It does not include ballots that were only counted by hand. It also does not indicate the rankings that each individual write-in candidate received. The CVR shows how voters ranked write-in candidates, but it does not show the names the voters wrote in.
 
 The CVR is a JSON file, used by the ranked-choice software to tabulate the results. The CVR is not tabulation, it is a record of ballots. The division is providing the CVR to increase transparency and provide voters the data necessary to confirm the results. The division cannot help voters access or analyze the data.
+
+## Lightning
+
+Source: https://fire.ak.blm.gov/content/maps/aicc/Data/Data%20(zipped%20geojson)/Historical_Lightning_Points_2012_forward_geojson.zip
+
+Files: State of Alaska Data Analysis/data/Lighning/Historical_Lightning_Points_2012_forward_geojson.zip
+
+Date Accessed: 2025-30-28
+
+Page Last Updated: Unknown
+
