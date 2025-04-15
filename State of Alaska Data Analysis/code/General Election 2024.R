@@ -10,8 +10,6 @@
 
 # The files are JSON.
 
-# CVR - Cast Vote Record
-
 
 
 # SETUP #######################################################################
@@ -27,74 +25,46 @@ files_and_paths <- tibble(
                          full.names = TRUE)) |> 
   mutate(cvr = str_detect(filenames, pattern = 'Cvr'))
 
-file_list <- list.files(path = 'data/General Election 2024/CVR_Export_20241130154411/', pattern = 'CvrExport', full.names = TRUE)
 
-small_file_list <- file_list[1]
 
-cvr <- fromJSON(txt = 'data/General Election 2024/CVR_Export_20241130154411/CvrExport_100.json') |> 
-  as.data.frame()
 
-df_list <- lapply(small_file_list, function(f) fromJSON(txt = f))
-
-df <- bind_rows(df_list) |> 
-  as.data.frame() |> 
-  janitor::clean_names() 
-
-df_unnested <- df |> 
-  unnest(sessions) |>
-  janitor::clean_names() |> 
-  unnest(original) |> 
-  janitor::clean_names() |> 
-  unnest(cards) |> 
-  janitor::clean_names() |> 
-  unnest(contests) |> 
-  janitor::clean_names() |> 
-  unnest(marks) |> 
-  
-
-cvr_100 <- fromJSON(txt = 'data/General Election 2024/CVR_Export_20241130154411/CvrExport_100.json')
+cvr_test <- fromJSON(txt = 'data/General Election 2024/CVR_Export_20241130154411/CvrExport_100.json')
 
 ballot_type_contest_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/BallotTypeContestManifest.json') |> 
   as.data.frame()
 
-ballot_type_manifest <- fromJSON ('data/General Election 2024/CVR_Export_20241130154411/BallotTypeManifest.json') |> 
-  as.data.frame()
+files_and_paths$filenames
+files_and_paths$filepaths
 
-candidate_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/CandidateManifest.json') |>
-  as.data.frame()
+f_json_to_df <- function(x) {
+  x$filename <- as.data.frame(fromJSON(txt = toString(x$filepaths)))
+}
 
-configuration <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/Configuration.json') |> 
-  as.data.frame()
+f_json_to_df_test <- function(x) {
+  
+  for (filename in list) {
+    print(x$filename)
+    print(toString(x$filepaths))
+    }
+}
 
-contest_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/ContestManifest.json') |> 
-  as.data.frame()
+x
 
-counting_group_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/CountingGroupManifest.json') |> 
-  as.data.frame()
+files_and_paths |>
+  filter(!cvr) |> 
+  f_json_to_df_test()
 
-district_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/DistrictManifest.json') |> 
-  as.data.frame()
 
-district_precinct_portion_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/DistrictPrecinctPortionManifest.json') |> 
-  as.data.frame()
+files_and_paths |> 
+  filter(!cvr) |> 
+  slice_head(n = 1) |> 
+  select(filepaths) |> 
+  toString() |> 
+  fromJSON()
 
-election_event_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/ElectionEventManifest.json') |> 
-  as.data.frame()
-
-outstack_condition_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/OutstackConditionManifest.json') |> 
-  as.data.frame()
-
-party_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/PartyManifest.json') |> 
-  as.data.frame()
-
-precinct_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/PrecinctManifest.json') |> 
-  as.data.frame()
-
-precinct_portion_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/DistrictPrecinctPortionManifest.json') |> 
-  as.data.frame()
-
-tabular_manifest <- fromJSON('data/General Election 2024/CVR_Export_20241130154411/TabulatorManifest.json') |> 
-  as.data.frame()
+files_and_paths |> 
+  filter(!cvr) |> 
+  f_json_to_df()
 
 # REVIEW ######################################################################
 
